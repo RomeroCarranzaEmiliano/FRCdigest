@@ -1,0 +1,47 @@
+# List of subjects and correlatives for the plan << Sistemas 2008 >>,,,,,,
+# <-- used for comments,,,,,,
+,,,,,,
+,,,,,,
+level,id,name,acronym,regulars_to_enroll,passed_to_enroll,passed_to_take_final
+I,1,analisis matematico I,,,,
+,2,algebra y geometria analitica,,,,
+,3,matematica discreta,,,,
+,4,sistemas y organizaciones,,,,
+,5,algoritmo y estructuras de datos,,,,
+,6,arquitectura de computadoras,,,,
+,7,fisica I,,,,
+,8,ingles I,,,,
+II,9,"quimica
+",,,,
+,10,analisis matematico II,,"(1, 2)
+",,"(1, 2)"
+,11,fisica II,,"(1, 7)",,"(1, 7)"
+,12,analisis de sistemas,,"(4,5)
+",,"(4, 5)"
+,13,sintaxis y semantica de los lenguajes,,"(3, 5)",,"(3, 5)"
+,14,paradigmas de programacion,,"(3, 5)",,"(3, 5)"
+,15,sistemas operativos,,"(3, 5, 6)",,"(3, 5, 6)"
+,16,sistemas de representacion,,,,
+III,17,probabilidades y estadisticas,,"(1, 2)",,"(1, 2)"
+,18,diseño de sistemas,,"(12, 14)","(3, 4, 5)","(12, 14)"
+,19,comunicaciones,,"(6, 10, 11)","(1, 2, 7)","(6, 10, 11)"
+,20,"Matematica superior
+",,10,"(1, 2)
+",10
+,21,gestion de datos,,"(12, 13, 14)","(3, 4, 5)","(12, 13, 14)"
+,22,ingenieria y sociedad,,,,
+,23,economia,,12,"(4, 5)",12
+,24,ingles II,,,8,
+IV,25,redes de informacion,,"(15, 19)
+","(3, 5, 6, 10, 11)","(15, 19)"
+,26,administracion de recursos,,"(15, 18, 23)","(6, 8, 12, 14)","(15, 18, 23)"
+,27,investigacion operativa,,"(17, 20)",10,"(17, 20)"
+,28,simulacion,,"(17, 20)",10,"(17, 20)"
+,29,ingenieria de software,,"(17, 18, 21)","(12, 13, 14)","(17, 18, 21)"
+,30,teoria de control,,"(9, 20)","(10, 11)
+","(9, 20)"
+,31,legislacion,,"(12, 22)","(4, 5)","(12, 22)"
+V,32,proyecto final,,"(25, 26, 29, 31)","(15, 16, 17, 18, 19, 21, 22, 23, 24)",all
+,33,inteligencia artificial,,"(27, 28)","(17, 18, 20)","(27, 28)"
+,34,administracion gerencial,,"(26, 27)","(15, 17, 18, 20, 23)","(26, 27)"
+,35,sistemas de gestion,,"(26, 27, 28)","(15, 17, 18, 20, 23)","(26, 27, 28)"
