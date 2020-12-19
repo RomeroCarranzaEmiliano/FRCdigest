@@ -8,10 +8,11 @@
 """
 
 # IMPORTS #########################################################################################
-
-from . import plan_sistemas_2008
+from static import plan_sistemas_2008
 ###################################################################################################
 
 # plan_sistemas_2008
 def get_plan_sistemas_2008():
-	plan_sistemas_2008.getdata()
+	data = plan_sistemas_2008.get_data()
+	return data
+

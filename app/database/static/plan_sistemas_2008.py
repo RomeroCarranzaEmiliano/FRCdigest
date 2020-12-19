@@ -100,7 +100,7 @@ def get_correlations_from_list(subject_id, need_to, subject_list, plan, correlat
 
 
 
-def get_data(filename='plan_sistemas_2008.csv'):
+def get_data(filename='static/plan_sistemas_2008.csv'):
 	# Returns two vectors with registers for subjects and correlatives
 	# containing all data for easy insertion into the database
 
@@ -133,15 +133,15 @@ def get_data(filename='plan_sistemas_2008.csv'):
 
 			if regulars_to_enroll:
 				for i in range(len(regulars_to_enroll)):
-					correlations_vector.append(regulars_to_enroll)
+					correlations_vector.append(regulars_to_enroll[i])
 
 			if passed_to_enroll:
 				for i in range(len(passed_to_enroll)):
-					correlations_vector.append(passed_to_enroll)
+					correlations_vector.append(passed_to_enroll[i])
 
 			if passed_to_take_final:
 				for i in range(len(passed_to_take_final)):
-					correlations_vector.append(passed_to_take_final)
+					correlations_vector.append(passed_to_take_final[i])
 
 	# Close file
 	file.close()
