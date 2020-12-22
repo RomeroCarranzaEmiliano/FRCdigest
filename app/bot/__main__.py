@@ -49,7 +49,8 @@ async def on_message(message):
         return
 
     # Execute command and fetch response
-    response = cmd.do(command)
+    data = [client, message, command]
+    response = cmd.do(data)
 
     # Send response
     await message.channel.send(response)

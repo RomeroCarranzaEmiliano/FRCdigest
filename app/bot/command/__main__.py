@@ -18,14 +18,9 @@ def process_message_into_vectorized_command(message):
     return vectorized_command
 
 
-def do(command):
+def do(data):
     # Grabs a vectorized command, detects command and parameters, executes command
-
-    """
-        For testing purposes
-        without further due, returns as if it was a syntax error,
-        informs error and returns help command instead
-    """
+    command = data[2]
 
     # Delete first element of command which is the bot's nickname, already verified
     del command[0]
@@ -37,7 +32,7 @@ def do(command):
     commander.detect()
 
     # Executes command
-    commander.execute()
+    commander.execute(data)
 
     # Fetch response
     response = commander.response
