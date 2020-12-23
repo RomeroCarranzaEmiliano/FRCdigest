@@ -64,6 +64,7 @@ def csv_sublist_to_vector(string):
 def read_csv_line(line):
 	# Reads the csv line and retuns a ready-to-use object containing the data
 	if line[0] != '#':
+		line = line.rstrip()
 		splited_line = line.split(',')
 		
 		level = splited_line[0]

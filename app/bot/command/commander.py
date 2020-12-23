@@ -36,12 +36,14 @@ class Commander():
         supported = [
             ['help'],
             ['ch', 'nickname', '_'],
-            ['list', 'subjects']
+            ['list', 'subjects'],
+            ['rules', '_']
         ]
         tag = [
             'help',
             'change_nickname',
-            'list_subjects'
+            'list_subjects',
+            'rules_x'
         ]
 
         detected_command = ''

@@ -10,17 +10,41 @@ import sqlite3
 import sys
 import discord
 from os import path
+
 sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
 from app.api import __main__ as api
+
+
 ###################################################################################################
 
 def help(data):
     # Shows a list of commands and their use
-    return 'This is a help message yet to be written...'
+
+    content = ''
+    content += '**[ help ]** *lista de comandos aceptados*\n'
+    content += '**[ ch nickname <nickname> ]** *modifica el apodo del bot*\n'
+    content += '**[ list subjects ]** *lista de materias y sus acronimos*\n'
+    content += '**[ rules <ord> ]** *muestra las correlatividades para una materia*\n'
+
+    colour = discord.Colour.from_rgb(100, 200, 100)
+    response = discord.Embed(title='Comandos aceptados',
+                             description=content, color=colour)
+
+    return response
+
 
 def change_nickname(data):
     # Changes the callable nickname for the server
     # format: ['ch', 'new_nickname', '_']
+
+    # Verify that it has administrator privileges
+    is_admin = data[1].author.guild_permissions.administrator
+    if not is_admin:
+        colour = discord.Colour.from_rgb(100, 0, 0)
+        response = discord.Embed(title='ERROR: Permiso denegado',
+                                 description='Debe tener privilegios de administrador para poder ejecutar el commando',
+                                 color=colour)
+        return response
 
     # Get vectorized command from data
     command = data[2]
@@ -55,29 +79,85 @@ def change_nickname(data):
     # Close connection
     connection.close()
 
-    return 'El apodo ha sido establecido como: ' + confirmed_nickname
+    content = 'Mi nuevo apodo es: ' + confirmed_nickname + '\n'
+    content += '**[ ' + confirmed_nickname + ' help ]** *para más ayuda*'
+
+    colour = discord.Colour.from_rgb(100, 200, 100)
+    response = discord.Embed(title='ATENCIÓN !!!',
+                             description=content, color=colour)
+
+    return response
+
 
 def list_subjects(data):
     # Shows a list of subjects and their acronyms for sistemas plan 2008
     result = api.do('names&acronyms', '')
 
     length = len(result)
+    ids = ''
     subjects = ''
     acronyms = ''
+
     for i in range(length):
+        ids += str(result[i][2]) + '\n'
         subjects += result[i][0] + '\n'
-        acronyms += result[i][1] + '\n'
+        if result[i][1] == '':
+            acronyms += 'none\n'
+        else:
+            acronyms += result[i][1] + '\n'
 
     colour = discord.Colour.from_rgb(100, 200, 100)
     response = discord.Embed(title='Lista de materias/acronimos',
                              description='ing. en sistemas - plan 2008', color=colour)
+    response.add_field(name='Ord.', value=ids, inline=True)
     response.add_field(name='Materia', value=subjects, inline=True)
     response.add_field(name='Acronimo', value=acronyms, inline=True)
 
     return response
 
+
+def rules_x(data):
+    results = api.do('rules_x', data)
+
+    if len(results) == 0:
+        colour = discord.Colour.from_rgb(100, 0, 0)
+        response = discord.Embed(title='ERROR: materia no encontrada',
+                                 description='Verifique que el parametro dado corresponda al ord. de la materia\n'
+                                             '> [ list subjects ] *para ver el ord. de cada materia*', color=colour)
+        return response
+
+    title = 'Correlatividades para __' + results[0][1] + '__'
+
+    to_enroll = ''
+    to_take_final = ''
+    for i in range(len(results)):
+        if results[i][2] == 'enroll':
+            if results[i][5] == 'REGULAR':
+                to_enroll += '[reg] '
+            elif results[i][5] == 'PASSED':
+                to_enroll += '[apr] '
+            to_enroll += results[i][4] + '\n'
+        elif results[i][2] == 'final':
+            if results[i][5] == 'REGULAR':
+                to_take_final += '[reg] '
+            elif results[i][5] == 'PASSED':
+                to_take_final += '[apr] '
+            to_take_final += results[i][4] + '\n'
+
+    colour = discord.Colour.from_rgb(100, 200, 100)
+    response = discord.Embed(title=title,
+                             description='[reg] *se debe tener regular* \n [apr] *se debe tener aprobada*',
+                             color=colour)
+
+    response.add_field(name='Para cursar', value=to_enroll, inline=False)
+    response.add_field(name='Para rendir', value=to_take_final, inline=False)
+
+    return response
+
+
 dictionary = {
     'help': help,
     'change_nickname': change_nickname,
-    'list_subjects': list_subjects
+    'list_subjects': list_subjects,
+    'rules_x': rules_x,
 }
