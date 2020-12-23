@@ -15,12 +15,10 @@ from command import __main__ as cmd
 #
 ###################################################################################################
 
-
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
 client = discord.Client()
-
 
 # When the bot is logged in the server
 @client.event
@@ -53,6 +51,10 @@ async def on_message(message):
     response = cmd.do(data)
 
     # Send response
-    await message.channel.send(response)
+    print(type(response))
+    if type(response) == discord.embeds.Embed:
+        await message.channel.send(embed=response)
+    else:
+        await message.channel.send(response)
 
 client.run(TOKEN)

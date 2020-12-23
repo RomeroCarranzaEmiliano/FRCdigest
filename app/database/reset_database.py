@@ -97,10 +97,16 @@ def reset():
 	# Execution of queries
 	# -----------------------------------------------------------------------------------
 	cursor.execute(sql_create_subjects_table())
+	connection.commit()
 	cursor.execute(sql_create_correlations_table())
+	connection.commit()
 	cursor.executemany(sql_insert_subjects(), subjects)
+	connection.commit()
 	cursor.executemany(sql_insert_correlations(), correlations)
+	connection.commit()
 	# -----------------------------------------------------------------------------------
+
+
 
 	# Close connection
 	connection.close()

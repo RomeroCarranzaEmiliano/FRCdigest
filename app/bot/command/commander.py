@@ -35,11 +35,13 @@ class Commander():
         # '_' means a parameter
         supported = [
             ['help'],
-            ['ch', 'nickname', '_']
+            ['ch', 'nickname', '_'],
+            ['list', 'subjects']
         ]
         tag = [
             'help',
-            'change_nickname'
+            'change_nickname',
+            'list_subjects'
         ]
 
         detected_command = ''
