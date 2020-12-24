@@ -1,0 +1,1 @@
+web: python app/bot/__main__.py
