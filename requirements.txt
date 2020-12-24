@@ -1,3 +1,2 @@
 pyyaml
-sqlite3
 discord.py
