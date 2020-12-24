@@ -1,1 +1,1 @@
-web: python app/bot/__main__.py
+web: python3 app/bot/__main__.py
