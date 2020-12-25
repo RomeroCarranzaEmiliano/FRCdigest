@@ -2,10 +2,13 @@
 
 # Restart the app
 
-while true
-do
-  cd app/bot
-  echo 'started'
-  python3 __main__.py
-  sleep 1m
-done
+echo '-----> running buildpack-run.sh'
+
+cd app/bot
+
+echo '-----> cd to...'
+echo `pwd`
+
+python3 __main__.py
+
+
