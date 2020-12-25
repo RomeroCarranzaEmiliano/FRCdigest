@@ -4,6 +4,7 @@
 
 echo '-----> running buildpack-run.sh'
 
-cd app/bot & python3 __main__.py
+cd app/bot
+echo `ls`
 
 
