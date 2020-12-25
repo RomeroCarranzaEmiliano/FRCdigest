@@ -4,11 +4,6 @@
 
 echo '-----> running buildpack-run.sh'
 
-cd app/bot
-
-echo '-----> cd to...'
-echo `pwd`
-
-python3 __main__.py
+python3 -m app/bot/__main__.py
 
 
