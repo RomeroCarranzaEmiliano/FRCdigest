@@ -5,7 +5,7 @@
 while true
 do
   cd app/bot
+  echo 'started'
   python3 __main__.py
-  echo `pwd`
-  sleep 24m
+  sleep 1m
 done
