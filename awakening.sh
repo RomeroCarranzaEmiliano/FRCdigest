@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 
 # Restart the app
-cd app/bot
-python3 app/bot/__main__.py
-echo "app restarted"
+
+while true
+do
+  cd app/bot
+  python3 __main__.py
+  echo `pwd`
+  sleep 24m
+done

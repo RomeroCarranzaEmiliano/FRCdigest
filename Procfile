@@ -1,1 +1,2 @@
-web: python3 app/bot/__main__.py
+web: chmod 777 awakening.sh
+web: ./awakening.sh
