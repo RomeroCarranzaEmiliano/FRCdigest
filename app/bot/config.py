@@ -15,11 +15,11 @@ def store_default_nickname_for(server_id):
     # in the config database
 
     # Get default nickname from config.yml
-    config_file = yaml.safe_load(open('config.yml', 'rt'))
+    config_file = yaml.safe_load(open('app/bot/config.yml', 'rt'))
     default_nickname = config_file['bot_default_nickname']
 
     # Connection to the database
-    connection = sqlite3.connect('config.db')
+    connection = sqlite3.connect('app/bot/config.db')
 
     # Cursor object
     cursor = connection.cursor()
@@ -47,7 +47,7 @@ def change_bot_nickname(nickname, server_id):
     # Changes the bot's nickname with the nickname provided
 
     # Connection to the database
-    connection = sqlite3.connect('config.db')
+    connection = sqlite3.connect('app/bot/config.db')
 
     # Cursor object
     cursor = connection.cursor()
@@ -67,7 +67,7 @@ def get_bot_nickname_for_server(server_id):
     # Returns the bot's nickname set for the server
 
     # Connection to the database
-    connection = sqlite3.connect('config.db')
+    connection = sqlite3.connect('app/bot/config.db')
 
     # Cursor object
     cursor = connection.cursor()

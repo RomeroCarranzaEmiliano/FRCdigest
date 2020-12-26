@@ -6,7 +6,11 @@
 
 
 # IMPORTS #########################################################################################
-from command import commander as cmdr
+import sys
+from os import path
+sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
+from app.bot.command import commander as cmdr
+
 ###################################################################################################
 
 def process_message_into_vectorized_command(message):

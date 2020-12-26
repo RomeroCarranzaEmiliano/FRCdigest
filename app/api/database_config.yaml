@@ -2,4 +2,4 @@
 # This file contains configuration variables for the database
 # such as path to the database file and filename
 
-database_path: ../database/FRCdigest.db
+database_path: app/database/FRCdigest.db

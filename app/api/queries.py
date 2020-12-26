@@ -19,7 +19,7 @@ def select_rules_for(data):
     subject_id = data[2][1]
 
     # Load database config data
-    database_config = yaml.safe_load(open('../api/database_config.yaml', 'rt'))
+    database_config = yaml.safe_load(open('app/api/database_config.yaml', 'rt'))
     database_path = database_config['database_path']
 
     # Connection to the database
@@ -51,7 +51,7 @@ def select_name_and_acronym_from_subjects(data):
 
     # Load database config data
     print()
-    database_config = yaml.safe_load(open('../api/database_config.yaml', 'rt'))
+    database_config = yaml.safe_load(open('app/api/database_config.yaml', 'rt'))
     database_path = database_config['database_path']
 
     # Connection to the database

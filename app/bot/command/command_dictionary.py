@@ -58,7 +58,7 @@ def change_nickname(data):
     # Update config.db
     # ---------------------------------------------------------------------------------------------
     # Creation & connection to the database
-    connection = sqlite3.connect('config.db')
+    connection = sqlite3.connect('app/bot/config.db')
 
     # Cursor object
     cursor = connection.cursor()

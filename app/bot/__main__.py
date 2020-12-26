@@ -7,13 +7,17 @@
 
 # IMPORTS
 ###################################################################################################
+import sys
 import os
+from os import path
+sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
 import discord
 from dotenv import load_dotenv
-import config
-from command import __main__ as cmd
+import app.bot.config as config
+from app.bot.command import __main__ as cmd
 #
 ###################################################################################################
+
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
