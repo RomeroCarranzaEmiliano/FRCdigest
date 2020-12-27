@@ -8,9 +8,13 @@
     - interacciones por mes
     - version activa en discord
     - version latest
-    - licencia
     - chat
 -->
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+![GitHub issues](https://img.shields.io/github/issues/RomeroCarranzaEmiliano/FRCdigest)
+![GitHub milestones](https://img.shields.io/github/milestones/open/RomeroCarranzaEmiliano/FRCdigest)
+
+
 # FRCdigest
 
 Un bot de discord y aplicación web open source con la misión de otorgar a los estudiantes de Ing. en Sistemas de
