@@ -1,0 +1,10 @@
+site_name: FRCdigest - bot
+docs_dir: docs
+
+nav:
+  - Principal: index.md
+  - Guías para el desarrollador: developer_guides.md
+  - Participar en el proyecto: contributing.md
+  - Acerca: about.md
+
+theme: readthedocs
