@@ -55,7 +55,9 @@ def csv_sublist_to_vector(string):
 				vector.append(int(number))
 			return vector
 		else:
-			return False
+			# It is getting only one subject, not a list
+			vector.append(int(string))
+			return vector
 	else:
 		return False
 
