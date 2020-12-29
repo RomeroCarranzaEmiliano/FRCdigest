@@ -22,7 +22,9 @@ from boto.s3.connection import S3Connection
 
 #load_dotenv()
 
-s3 = S3connection(os.environ['S3_KEY'], os.environ['S3_SECRET'])
+s3 = S3Connection(os.environ['S3_KEY'], os.environ['S3_SECRET'])
+
+print('s3: ', s3)
 
 TOKEN = s3['TOKEN']
 
