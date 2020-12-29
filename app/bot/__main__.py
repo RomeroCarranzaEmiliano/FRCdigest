@@ -20,10 +20,12 @@ from boto.s3.connection import S3connection
 ###################################################################################################
 
 
-load_dotenv()
+#load_dotenv()
 
 s3 = S3connection(os.environ['S3_KEY'], os.environ['S3_SECRET'])
 TOKEN = s3['TOKEN']
+
+print('token got: ', TOKEN)
 
 client = discord.Client()
 
