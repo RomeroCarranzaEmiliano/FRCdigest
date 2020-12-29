@@ -15,7 +15,7 @@ import discord
 from dotenv import load_dotenv
 import app.bot.config as config
 from app.bot.command import __main__ as cmd
-from boto.s3.connection import S3connection
+from boto.s3.connection import S3Connection
 #
 ###################################################################################################
 
@@ -23,6 +23,7 @@ from boto.s3.connection import S3connection
 #load_dotenv()
 
 s3 = S3connection(os.environ['S3_KEY'], os.environ['S3_SECRET'])
+
 TOKEN = s3['TOKEN']
 
 print('token got: ', TOKEN)
