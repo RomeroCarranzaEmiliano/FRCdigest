@@ -15,12 +15,15 @@ import discord
 from dotenv import load_dotenv
 import app.bot.config as config
 from app.bot.command import __main__ as cmd
+from boto.s3.connection import S3connection
 #
 ###################################################################################################
 
 
 load_dotenv()
-TOKEN = os.getenv('DISCORD_TOKEN')
+
+s3 = S3connection(os.environ['S3_KEY'], os.environ['S3_SECRET'])
+TOKEN = s3['TOKEN']
 
 client = discord.Client()
 
