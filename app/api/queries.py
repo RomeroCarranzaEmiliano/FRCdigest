@@ -12,6 +12,7 @@ import yaml
 
 ###################################################################################################
 
+
 def select_rules_for(data):
     #
 
@@ -28,22 +29,37 @@ def select_rules_for(data):
     # Cursor object
     cursor = connection.cursor()
 
-    # Sql query
-    sql = 'SELECT S.id, S.name, C.need_to, C.correlative_subject_id, CS.name, C.correlative_status_needed ' \
+    # Sql queries
+    sql_1 = 'SELECT name FROM subjects WHERE id = ?;'
+    sql_2 = 'SELECT S.id, S.name, C.need_to, C.correlative_subject_id, CS.name, C.correlative_status_needed ' \
           'FROM subjects S ' \
           'JOIN correlations C ON S.id = C.subject_id ' \
           'JOIN subjects CS ON CS.id = C.correlative_subject_id ' \
           'WHERE S.id = ?;'
 
-    # Execution of query
-    cursor.execute(sql, (subject_id,))
+    # Execution of queries
+    cursor.execute(sql_1, (subject_id,))
+    result_sql_1 = cursor.fetchone()
+    # In case the id is invalid
+    if not result_sql_1:
+        # Close connection
+        connection.close()
+        return False, False
+
+    subject_name = result_sql_1[0]
+
+    cursor.execute(sql_2, (subject_id,))
 
     results = cursor.fetchall()
 
     # Close connection
     connection.close()
 
-    return results
+    # In case there are no rules
+    if not results:
+        return results, subject_name
+
+    return results, subject_name
 
 
 def select_name_and_acronym_from_subjects(data):

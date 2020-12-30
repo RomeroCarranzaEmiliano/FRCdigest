@@ -59,7 +59,6 @@ def get_data():
 			   data[1][i].plan, data[1][i].correlative_status_needed)
 		correlations.append(row)
 
-	print(correlations)
 
 	return subjects, correlations
 

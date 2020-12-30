@@ -1,4 +1,2 @@
-# config.yml
-# Bot configuration
-
 bot_default_nickname: frc!
+environment: prod

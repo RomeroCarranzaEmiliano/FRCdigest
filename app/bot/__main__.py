@@ -10,19 +10,30 @@
 import sys
 import os
 from os import path
+
 sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
 import discord
 from dotenv import load_dotenv
 import app.bot.config as config
 from app.bot.command import __main__ as cmd
-#
+import yaml
+
 ###################################################################################################
 
-#load_dotenv() <-- should be commented in production
+# Check environment
+config_file = yaml.safe_load(open('app/bot/config.yml', 'rt'))
+environment = config_file['environment']
+if environment == 'dev':
+    # Development environment
+    load_dotenv()
+    TOKEN = os.getenv('TOKEN')
+else:
+    # Production environment
+    TOKEN = os.environ['TOKEN']
 
-TOKEN = os.environ['TOKEN']
 
 client = discord.Client()
+
 
 # When the bot is logged in the server
 @client.event
@@ -60,5 +71,6 @@ async def on_message(message):
         await message.channel.send(embed=response)
     else:
         await message.channel.send(response)
+
 
 client.run(TOKEN)

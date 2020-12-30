@@ -117,32 +117,42 @@ def list_subjects(data):
 
 
 def rules_x(data):
-    results = api.do('rules_x', data)
+    results, subject_name = api.do('rules_x', data)
 
-    if len(results) == 0:
+    # In case subject id isn't valid
+    if not results and type(results) == bool:
         colour = discord.Colour.from_rgb(100, 0, 0)
         response = discord.Embed(title='ERROR: materia no encontrada',
                                  description='Verifique que el parametro dado corresponda al ord. de la materia\n'
                                              '> [ list subjects ] *para ver el ord. de cada materia*', color=colour)
         return response
 
-    title = 'Correlatividades para __' + results[0][1] + '__'
+    title = 'Correlatividades para __' + subject_name + '__'
 
     to_enroll = ''
     to_take_final = ''
-    for i in range(len(results)):
-        if results[i][2] == 'enroll':
-            if results[i][5] == 'REGULAR':
-                to_enroll += '[reg] '
-            elif results[i][5] == 'PASSED':
-                to_enroll += '[apr] '
-            to_enroll += results[i][4] + '\n'
-        elif results[i][2] == 'final':
-            if results[i][5] == 'REGULAR':
-                to_take_final += '[reg] '
-            elif results[i][5] == 'PASSED':
-                to_take_final += '[apr] '
-            to_take_final += results[i][4] + '\n'
+
+    length = len(results)
+    if length > 0:
+        for i in range(len(results)):
+            if results[i][2] == 'enroll':
+                if results[i][5] == 'REGULAR':
+                    to_enroll += '[reg] '
+                elif results[i][5] == 'PASSED':
+                    to_enroll += '[apr] '
+                to_enroll += results[i][4] + '\n'
+            elif results[i][2] == 'final':
+                if results[i][5] == 'REGULAR':
+                    to_take_final += '[reg] '
+                elif results[i][5] == 'PASSED':
+                    to_take_final += '[apr] '
+                to_take_final += results[i][4] + '\n'
+
+    # In case there is no correlatives
+    if to_enroll == '':
+        to_enroll = 'no posee correlativas para cursar'
+    if to_take_final == '':
+        to_take_final = 'no posee correlativas para rendir'
 
     colour = discord.Colour.from_rgb(100, 200, 100)
     response = discord.Embed(title=title,

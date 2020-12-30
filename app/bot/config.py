@@ -8,7 +8,9 @@
 import sqlite3
 import yaml
 
+
 ###################################################################################################
+
 
 def store_default_nickname_for(server_id):
     # Stores the default nickname for this instance of the bot
@@ -42,6 +44,7 @@ def store_default_nickname_for(server_id):
 
     print('default_nickname: ', default_nickname)
     print('server_id: ', server_id)
+
 
 def change_bot_nickname(nickname, server_id):
     # Changes the bot's nickname with the nickname provided
