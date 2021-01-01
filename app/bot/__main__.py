@@ -57,7 +57,7 @@ async def on_message(message):
     command = cmd.process_message_into_vectorized_command(message.content)
 
     # Discriminates messages that arent meant for the bot
-    server_id = client.guilds[0].id
+    server_id = message.guild.id
     if config.get_bot_nickname_for_server(server_id) != command[0]:
         return
 
@@ -66,7 +66,6 @@ async def on_message(message):
     response = cmd.do(data)
 
     # Send response
-    print(type(response))
     if type(response) == discord.embeds.Embed:
         await message.channel.send(embed=response)
     else:

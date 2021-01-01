@@ -42,8 +42,6 @@ def store_default_nickname_for(server_id):
     # Close connection
     connection.close()
 
-    print('default_nickname: ', default_nickname)
-    print('server_id: ', server_id)
 
 
 def change_bot_nickname(nickname, server_id):
@@ -56,11 +54,13 @@ def change_bot_nickname(nickname, server_id):
     cursor = connection.cursor()
 
     # sql query
-    sql_update_nickname = 'UPDATE nicknames SET ? WHERE server_id = ?;'
+    sql_update_nickname = 'UPDATE nicknames SET nickname=? WHERE server_id = ?;'
     parameters = (nickname, server_id)
 
     # Execution of query
     cursor.execute(sql_update_nickname, parameters)
+
+    connection.commit()
 
     # Close connection
     connection.close()
@@ -87,7 +87,5 @@ def get_bot_nickname_for_server(server_id):
 
     # Close connection
     connection.close()
-
-    print('nickname stored: ', nickname)
 
     return nickname

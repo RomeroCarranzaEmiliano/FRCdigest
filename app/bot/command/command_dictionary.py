@@ -53,7 +53,7 @@ def change_nickname(data):
     new_nickname = command[2]
 
     # Get server_id from data
-    server_id = data[0].guilds[0].id
+    server_id = data[1].guild.id
 
     # Update config.db
     # ---------------------------------------------------------------------------------------------
