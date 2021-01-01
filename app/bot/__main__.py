@@ -41,9 +41,9 @@ async def on_ready():
     print('We have logged in as {0.user}'.format(client))
 
     # Adds the server_id and default nickname to the config database
-    server_id = client.guilds[0].id
+    #server_id = client.guilds[0].id
 
-    config.store_default_nickname_for(server_id)
+    #config.store_default_nickname_for(server_id)
 
 
 # When a message is send in the server

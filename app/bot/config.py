@@ -54,10 +54,17 @@ def change_bot_nickname(nickname, server_id):
     cursor = connection.cursor()
 
     # sql query
+    sql_select_nickname = 'SELECT nickname FROM nicknames WHERE server_id = ?;'
     sql_update_nickname = 'UPDATE nicknames SET nickname=? WHERE server_id = ?;'
     parameters = (nickname, server_id)
 
     # Execution of query
+    cursor.execute(sql_select_nickname, (server_id,))
+    stored_nickname = cursor.fetchone()
+    if not stored_nickname:
+        sql_update_nickname = 'INSERT INTO nicknames (server_id, nickname) VALUES (?, ?);'
+        parameters = (server_id, nickname)
+
     cursor.execute(sql_update_nickname, parameters)
 
     connection.commit()
@@ -83,9 +90,14 @@ def get_bot_nickname_for_server(server_id):
     cursor.execute(sql_get_nickname, parameters)
 
     # Get result
-    nickname = cursor.fetchone()[0]
+    nickname = cursor.fetchone()
 
     # Close connection
     connection.close()
 
-    return nickname
+    if not nickname:
+        # Get default nickname from config.yml
+        config_file = yaml.safe_load(open('app/bot/config.yml', 'rt'))
+        nickname = [config_file['bot_default_nickname']]
+
+    return nickname[0]
