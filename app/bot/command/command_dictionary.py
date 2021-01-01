@@ -13,6 +13,7 @@ from os import path
 
 sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
 from app.api import __main__ as api
+from app.bot import config
 
 
 ###################################################################################################
@@ -60,6 +61,7 @@ def change_nickname(data):
     # Creation & connection to the database
     connection = sqlite3.connect('app/bot/config.db')
 
+    """
     # Cursor object
     cursor = connection.cursor()
 
@@ -78,6 +80,12 @@ def change_nickname(data):
 
     # Close connection
     connection.close()
+    
+    """
+
+    config.change_bot_nickname(new_nickname, server_id)
+
+    confirmed_nickname = new_nickname
 
     content = 'Mi nuevo apodo es: ' + confirmed_nickname + '\n'
     content += '**[ ' + confirmed_nickname + ' help ]** *para más ayuda*'
