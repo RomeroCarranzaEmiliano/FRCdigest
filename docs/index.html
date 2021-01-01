@@ -52,13 +52,17 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#frcdigest">FRCdigest</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#un-vistazo">Un vistazo</a>
-    </li>
     <li class="toctree-l2"><a class="reference internal" href="#soporte">Soporte</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#comandos">Comandos</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#como-empezar">Cómo empezar</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#creacion-de-la-aplicacion-y-bot-en-el-portal-de-discord">Creación de la aplicación y bot en el portal de discord</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ejecutar-bot">Ejecutar bot</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#necesito-ayuda">Necesito ayuda</a>
     </li>
@@ -112,22 +116,88 @@
                 <h1 id="principal">Principal</h1>
 <hr />
 <h2 id="frcdigest">FRCdigest</h2>
-<p>...aquí debe ir una descripción muy breve de la aplicación</p>
+<p>Un bot de discord y aplicación web open source con la misión de otorgar a los estudiantes de Ing. en Sistemas de 
+Información de la UTN FRC, información digerida y útil, para facilitar la vida académica. </p>
 <hr />
-<h2 id="un-vistazo">Un vistazo</h2>
-<p>...aquí debe ir una descripción más extensa de la aplicación, con imagenes que ilustren</p>
-<hr />
+<!--
+## Un vistazo
+
+...aquí debe ir una descripción más extensa de la aplicación, con imagenes que ilustren
+
+---
+-->
+
 <h2 id="soporte">Soporte</h2>
-<p>...aquí debe ir el soporte de la aplicación. Planes que soporta, carreras que soporta, etc.</p>
+<p>La base de datos de la aplicación soporta los siguientes planes:</p>
+<ul>
+<li>Ing. en Sistemas de Información<ul>
+<li>plan 2008</li>
+</ul>
+</li>
+</ul>
 <hr />
 <h2 id="comandos">Comandos</h2>
-<p>...aquí debe ir una lista de los comandos soportados hasta el momento, junto con una descripción de lo que realizan</p>
+<ul>
+<li><code>frc! help</code> mensaje de ayuda, muestra una lista de los comandos soportados</li>
+<li><code>ch nickname &lt;nuevo_apodo&gt;</code> modifica el apodo del bot por <em>nuevo_apodo</em></li>
+<li><code>list subjects</code> muestra una lista de materias junto con su ord. y acrónimo(si tiene)</li>
+<li><code>rules &lt;ord&gt;</code> muestra las correlativas para cursar y rendir la materia de <em>ord</em> ingresada</li>
+</ul>
 <hr />
 <h2 id="como-empezar">Cómo empezar</h2>
-<p>...una breve guía para agregar el bot a un servidor propio de discord</p>
+<h3 id="creacion-de-la-aplicacion-y-bot-en-el-portal-de-discord">Creación de la aplicación y bot en el portal de discord</h3>
+<p>Una vez que ya se tiene una cuenta de <a href="https://discord.com/">discord</a> y un servidor creado en la aplicación, es 
+necesario entrar al <a href="https://discord.com/developers/applications">portal para desarrolladores de discord</a>. Dentro del 
+portal hay que darle al botón <em>New Aplication</em> o <em>Nueva Aplicación</em>.</p>
+<p><em>debería aparecer esto en pantalla</em></p>
+<p><img alt="" src="images/new_aplication_window.png" /></p>
+<p>Se debe ingresar el nombre de la aplicación(<em>FRCdigest_dev</em>) y luego oprimir el botón <em>create</em> o <em>crear</em>.</p>
+<p><img alt="" src="images/applications_portal.png" /></p>
+<p>En este portal es necesario ir a la opción de <em>bot</em> que se puede ver a la izquierda, luego se debe crear un bot para la
+aplicación. Es importante que solo la opción de <em>public bot</em> esté activada, de lo contrario en los próximos pasos se 
+pueden presentar errores.</p>
+<p>Por último hay que ir a la sección <em>OAuth2</em>, marcar la casilla de <em>bot</em> y copiar el link generado.</p>
+<p>Entrando al link a través del navegador, nos va a dar la opción de agregar el bot a nuestro servidor de discord en 
+<em>seleccione un servidor</em></p>
+<p><img alt="" src="images/oauth_add_to_server.png" /></p>
+<p>Oprimiendo el botón <em>Autorizar</em>, nuestro bot será agregado a nuestro servidor.</p>
+<p><strong>¡Ahora ya se tiene un servidor y bot para probar nuestro desarrollo!</strong></p>
+<h3 id="ejecutar-bot">Ejecutar bot</h3>
+<p>Ya con nuestra app, bot y servidor de desarrollo, es momento de ejecutar nuestro bot para ver si todo funciona 
+correctamente.</p>
+<p>Es necesario en el portal de desarrollador de discord a la sección de bot y copiar el token generado por discord.</p>
+<p><img alt="" src="images/bot_token.png" /></p>
+<p>Este token, debemos pegarlo en el archivo <em>FRCdigest/app/bot/.env</em> de la forma:</p>
+<pre><code>TOKEN=nuestro_token_copiado_desde_el_portal_de_discord
+</code></pre>
+<p>Ahora es necesario hacerle saber al bot que debe ejecutar el bot con dicho token, para que no trate de buscar el token
+en las <em>environment variables</em> como haría en un entorno de producción. Para esto, vamos a <em>FRCdigest/app/bot/config.yml</em>
+ y cambiamos:</p>
+<pre><code>environment: prod
+</code></pre>
+<p>por:</p>
+<pre><code>environment: env
+</code></pre>
+<p>Listo, ahora nuestro bot está configurado para un entorno de desarrollo. Abrimos una terminal en la carpeta del
+repositorio, donde podemos ver la siguiente estructura de archivos:</p>
+<pre><code>/FRCdigest
+    /app
+    /docs
+    /DOCUMENTATION
+    ...
+</code></pre>
+<p>Procurando que el directorio de trabajo sea <em>/FRCdigest</em>, ejecutamos:</p>
+<pre><code>python3 -m app.bot
+</code></pre>
+<p>Si todo es correcto, en unos pocos segundos el bot se ejecutará con exito y podremos verlo activo en nuestro servidor
+de discord. Para verificar podemos escribir en chat del servidor el mensaje</p>
+<pre><code>frc! help
+</code></pre>
+<p>y el bot debería contestar con un mensaje de ayuda mostrando los comandos soportados.</p>
 <hr />
 <h2 id="necesito-ayuda">Necesito ayuda</h2>
-<p>...links a foros, chats, etc, donde se pueda conseguir ayuda para usar el bot</p>
+<p>En caso de cualquier duda o sugerencia, podés hablar por 
+<a href="https://gitter.im/FRCdigest-crew/community?utm_source=share-link&amp;utm_medium=link&amp;utm_campaign=share-link">gitter :)</a></p>
 <hr />
               
             </div>
@@ -182,5 +252,5 @@
 
 <!--
 MkDocs version : 1.1.2
-Build Date UTC : 2020-12-28 23:49:12.749605+00:00
+Build Date UTC : 2021-01-01 00:12:12.064366+00:00
 -->
