@@ -23,13 +23,13 @@ import yaml
 # Check environment
 config_file = yaml.safe_load(open('app/bot/config.yml', 'rt'))
 environment = config_file['environment']
+load_dotenv()
 if environment == 'dev':
     # Development environment
-    load_dotenv()
-    TOKEN = os.getenv('TOKEN')
+    TOKEN = os.getenv('DEV_TOKEN')
 else:
     # Production environment
-    TOKEN = os.environ['TOKEN']
+    TOKEN = os.environ['PROD_TOKEN']
 
 
 client = discord.Client()
