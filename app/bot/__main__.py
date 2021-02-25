@@ -29,7 +29,7 @@ if environment == 'dev':
     TOKEN = os.getenv('DEV_TOKEN')
 else:
     # Production environment
-    TOKEN = os.getenv['PROD_TOKEN']
+    TOKEN = os.getenv('PROD_TOKEN')
 
 
 client = discord.Client()
