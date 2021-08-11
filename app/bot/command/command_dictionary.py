@@ -15,7 +15,6 @@ sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
 from app.api import __main__ as api
 from app.bot import config
 
-
 ###################################################################################################
 
 def help(data):

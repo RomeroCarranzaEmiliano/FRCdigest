@@ -18,7 +18,28 @@ import app.bot.config as config
 from app.bot.command import __main__ as cmd
 import yaml
 
+from discord.ext import commands, tasks
+
+from command import scrapers
 ###################################################################################################
+
+class DailyCog(commands.Cog):
+    def __init__(self):
+        self.scrap.start()
+
+    def cog_unload(self):
+        self.scrap.cancel()
+
+    @tasks.loop(minutes=1)
+    async def scrap(self):
+        print("[SERVER] scheduled task performed")
+        response_list = scrapers.dictionary["departamento_sistemas_novedades"]("")
+
+        if response_list:
+            channel = discord.utils.get(client.get_all_channels(), name="general")
+            for response in response_list:
+                await channel.send(embed=response)
+
 
 # Check environment
 config_file = yaml.safe_load(open('app/bot/config.yml', 'rt'))
@@ -45,6 +66,9 @@ async def on_ready():
 
     #config.store_default_nickname_for(server_id)
 
+    # Creates and starts the webscrappers schedules
+    cog = DailyCog()
+
 
 # When a message is send in the server
 @client.event
@@ -70,6 +94,7 @@ async def on_message(message):
         await message.channel.send(embed=response)
     else:
         await message.channel.send(response)
+
 
 
 client.run(TOKEN)
